@@ -1,18 +1,24 @@
 import { NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { sql } from '@vercel/postgres'
 
 // GET /api/reviews - Fetch all reviews
 export async function GET() {
     try {
-        const filePath = path.join(process.cwd(), 'src/data/reviews.json')
-        const fileContents = fs.readFileSync(filePath, 'utf8')
-        const reviews = JSON.parse(fileContents)
-
-        return NextResponse.json(reviews)
+        const { rows } = await sql`
+            SELECT * FROM reviews 
+            WHERE verified = true 
+            ORDER BY date DESC
+        `
+        return NextResponse.json(rows)
     } catch (error) {
-        console.error('Error reading reviews:', error)
-        return NextResponse.json({ error: 'Failed to fetch reviews' }, { status: 500 })
+        console.error('Error fetching reviews:', error)
+        // Fallback to JSON file if database not set up yet
+        try {
+            const reviewsData = await import('@/data/reviews.json')
+            return NextResponse.json(reviewsData.default)
+        } catch {
+            return NextResponse.json([])
+        }
     }
 }
 
@@ -37,33 +43,19 @@ export async function POST(request: Request) {
             )
         }
 
-        // Read existing reviews
-        const filePath = path.join(process.cwd(), 'src/data/reviews.json')
-        const fileContents = fs.readFileSync(filePath, 'utf8')
-        const reviews = JSON.parse(fileContents)
+        // Save to database
+        const date = new Date().toISOString().split('T')[0]
 
-        // Create new review
-        const newReview = {
-            id: reviews.length > 0 ? Math.max(...reviews.map((r: any) => r.id)) + 1 : 1,
-            name,
-            location,
-            rating: Number(rating),
-            review,
-            date: new Date().toISOString().split('T')[0],
-            verified: true // Auto-approve for now
-        }
+        await sql`
+            INSERT INTO reviews (name, location, rating, review, date, verified)
+            VALUES (${name}, ${location}, ${rating}, ${review}, ${date}, true)
+        `
 
-        // Add to reviews array
-        reviews.push(newReview)
-
-        // Write back to file
-        fs.writeFileSync(filePath, JSON.stringify(reviews, null, 4))
-
-        return NextResponse.json({ success: true, review: newReview }, { status: 201 })
+        return NextResponse.json({ success: true }, { status: 201 })
     } catch (error) {
         console.error('Error saving review:', error)
         return NextResponse.json(
-            { error: 'Failed to save review' },
+            { error: 'Failed to save review. Please try again.' },
             { status: 500 }
         )
     }
