@@ -142,7 +142,7 @@ export default function ProductPageContent({ slug }: ProductPageContentProps) {
                                             <button
                                                 key={variant.size}
                                                 onClick={() => setSelectedVariant(variant)}
-                                                className={`px-4 py-2 border text-xs uppercase tracking-widest transition-all ${selectedVariant?.size === variant.size
+                                                className={`px-4 py-2 border text-xs uppercase tracking-widest transition-all rounded-full ${selectedVariant?.size === variant.size
                                                     ? 'border-hita-green bg-hita-green text-white'
                                                     : 'border-hita-green/30 text-hita-green hover:border-hita-green'
                                                     }`}
@@ -161,13 +161,13 @@ export default function ProductPageContent({ slug }: ProductPageContentProps) {
                                 <div className="flex flex-col sm:flex-row gap-4">
                                     <button
                                         onClick={handleAddToCart}
-                                        className="flex-1 py-4 px-8 border border-hita-green text-hita-green bg-transparent hover:bg-hita-green hover:text-white font-sans text-xs uppercase tracking-[0.15em] transition-all duration-300"
+                                        className="flex-1 py-4 px-8 border border-hita-green text-hita-green bg-transparent hover:bg-hita-green hover:text-white font-sans text-xs uppercase tracking-[0.15em] transition-all duration-300 rounded-full"
                                     >
                                         Add to Cart
                                     </button>
                                     <button
                                         onClick={handleAddToCart}
-                                        className="flex-1 py-4 px-8 bg-hita-green text-white hover:bg-hita-green-dragongreen font-sans text-xs uppercase tracking-[0.15em] shadow-lg hover:shadow-xl transition-all duration-300"
+                                        className="flex-1 py-4 px-8 bg-hita-green text-white hover:bg-hita-green-dragongreen font-sans text-xs uppercase tracking-[0.15em] shadow-lg hover:shadow-xl transition-all duration-300 rounded-full"
                                     >
                                         Buy Now
                                     </button>
