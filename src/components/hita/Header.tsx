@@ -132,6 +132,7 @@ export default function HitaHeader() {
                                 {[
                                     { name: 'Shop All', href: '/collections/all' },
                                     { name: 'Our Story', href: '/about' },
+                                    { name: 'Reviews', href: '/reviews' },
                                     { name: 'Journal', href: '/blog' },
                                     { name: 'Contact', href: '/contact' },
                                 ].map((link, i) => (
