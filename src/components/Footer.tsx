@@ -16,26 +16,33 @@ export default function Footer() {
     <footer className="bg-[#1a2e1f] text-white">
       {/* Newsletter Section */}
       <div className="border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-          <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
+          <div className="max-w-xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl md:text-3xl font-serif mb-3 md:mb-4 text-white">
-                Join Our <span className="italic text-[#c9a227]">Wellness</span> Journey
-              </h3>
-              <p className="text-white/60 text-xs md:text-sm mb-6 md:mb-8 px-4">
-                Receive exclusive insights on Ayurvedic practices
-              </p>
-              <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto px-4">
+              <div className="mb-8">
+                <div className="inline-block mb-4">
+                  <span className="text-[#c9a227] text-xs uppercase tracking-[0.3em] font-medium">Newsletter</span>
+                </div>
+                <h3 className="text-2xl md:text-4xl font-serif text-white mb-4 leading-tight">
+                  Stay Connected to <br className="hidden md:block" />
+                  <span className="italic text-[#c9a227]">Ancient Wisdom</span>
+                </h3>
+                <p className="text-white/50 text-sm md:text-base leading-relaxed">
+                  Exclusive insights, wellness tips, and early access to new formulations
+                </p>
+              </div>
+
+              <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
                 <input
                   type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder:text-white/40 focus:border-[#c9a227] focus:outline-none transition-colors text-sm"
+                  placeholder="Your email address"
+                  className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-full text-white placeholder:text-white/30 focus:border-[#c9a227] focus:bg-white/15 focus:outline-none transition-all text-sm backdrop-blur-sm"
                 />
-                <button className="px-6 py-3 bg-[#c9a227] text-[#1a2e1f] text-xs md:text-sm tracking-widest uppercase font-medium hover:bg-[#d4af37] transition-colors rounded-lg">
+                <button className="px-8 py-4 bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-[#1a2e1f] text-xs tracking-[0.2em] uppercase font-semibold hover:shadow-lg hover:shadow-[#c9a227]/30 transition-all duration-300 rounded-full">
                   Subscribe
                 </button>
               </form>
