@@ -54,7 +54,7 @@ export default function CategoryGrid() {
                             transition={{ delay: i * 0.1 }}
                         >
                             <Link href={category.link} className="group block relative">
-                                <div className="relative aspect-[3/4] overflow-hidden">
+                                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                                     <Image
                                         src={category.image}
                                         alt={category.title}
