@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "name": "Priya S.",
+        "location": "Mumbai",
+        "rating": 5,
+        "review": "I've tried many Ayurvedic brands, but The Young Vaidyas stands out. The face serum has completely restored my skin's natural glow.",
+        "date": "2026-01-15",
+        "verified": true
+    },
+    {
+        "id": 2,
+        "name": "Rahul M.",
+        "location": "Bangalore",
+        "rating": 5,
+        "review": "The hair oil is a miracle worker. My hair fall has reduced significantly, and it feels so much healthier now.",
+        "date": "2026-01-20",
+        "verified": true
+    },
+    {
+        "id": 3,
+        "name": "Anjali K.",
+        "location": "Delhi",
+        "rating": 5,
+        "review": "Authentic, pure, and effective. The Kamal Nayan Kajal is soothing and stays put all day.",
+        "date": "2026-01-25",
+        "verified": true
+    }
+]
