@@ -18,13 +18,6 @@ const categories = [
         image: '/images/category_skin.jpg',
         link: '/collections/skincare',
         description: 'Pure botanical formulations'
-    },
-    {
-        id: 3,
-        title: 'Oral Care',
-        image: '/images/category_oral.jpg',
-        link: '/collections/oral-care',
-        description: 'Traditional oral wellness'
     }
 ]
 
@@ -51,7 +44,7 @@ export default function CategoryGrid() {
                 </div>
 
                 {/* Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {categories.map((category, i) => (
                         <motion.div
                             key={category.id}

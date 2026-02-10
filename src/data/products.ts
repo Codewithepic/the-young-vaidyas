@@ -3,7 +3,7 @@ export interface Product {
     slug: string;
     name: string;
     price: number;
-    category: 'skincare' | 'hair-care' | 'oral-care' | 'wellness';
+    category: 'skincare' | 'hair-care' | 'wellness';
     description: string;
     shortDescription: string;
     images: string[];
@@ -106,13 +106,7 @@ export const CATEGORIES = [
         description: 'Ancient secrets for strong, lustrous hair.',
         image: '/images/category_hair.jpg'
     },
-    {
-        id: 'oral-care',
-        name: 'Oral Wellness',
-        slug: 'oral-care',
-        description: 'Holistic care for a healthy smile.',
-        image: '/images/category_oral.jpg'
-    },
+
     {
         id: 'wellness',
         name: 'Wellness Tools',
