@@ -1,0 +1,40 @@
+{
+  "name": "tyv",
+  "version": "1.0.0",
+  "description": "The Young Vaidyas - Ayurvedic Wellness Website",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [
+    "ayurveda",
+    "wellness",
+    "consultation",
+    "natural-products"
+  ],
+  "author": "The Young Vaidyas",
+  "license": "ISC",
+  "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
+    "@types/node": "^25.2.0",
+    "@types/react": "^19.2.10",
+    "autoprefixer": "^10.4.24",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.6",
+    "framer-motion": "^12.29.2",
+    "lucide-react": "^0.563.0",
+    "next": "^16.1.6",
+    "postcss": "^8.5.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^3.4.19",
+    "three": "^0.182.0",
+    "typescript": "^5.9.3"
+  }
+}

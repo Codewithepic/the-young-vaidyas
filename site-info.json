@@ -1,0 +1,35 @@
+{
+  "siteName": "The Young Vaidyas",
+  "tagline": "हृदय तिष्ठति संहिता !!",
+  "taglineTranslation": "The Samhita resides in the heart",
+  "description": "A student-led Ayurvedic startup founded by passionate BAMS scholars. Rooted in classical texts and traditional preparation methods, we create sincere, handmade formulations without shortcuts or unnecessary chemicals.",
+  "logo": "logo.jpg",
+  "socialMedia": {
+    "instagram": {
+      "handle": "@the_young_vaidyas",
+      "url": "https://www.instagram.com/the_young_vaidyas?igsh=MXRhZjVlNHhvem40cg=="
+    }
+  },
+  "navigation": [
+    "Home",
+    "About Us",
+    "Our Team",
+    "Wellness Consultation",
+    "Products",
+    "Quality & Ethics",
+    "Experiences",
+    "FAQs",
+    "Contact"
+  ],
+  "sections": {
+    "home": "#home",
+    "aboutUs": "#about-us",
+    "ourTeam": "#our-team",
+    "wellnessConsultation": "#wellness-consultation",
+    "products": "#products",
+    "qualityEthics": "#quality-ethics",
+    "experiences": "#experiences",
+    "faqs": "#faqs",
+    "contact": "#contact"
+  }
+}

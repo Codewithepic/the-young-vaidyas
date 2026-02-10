@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Layout Options</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a332a;
+            /* Deep Forest Green */
+            --color-secondary: #c5a059;
+            /* Muted Gold */
+            --color-bg: #fdfbf7;
+            /* Cream */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--color-bg);
+            padding: 60px;
+            color: var(--color-primary);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--color-primary);
+            /* Deep Forest Green Background */
+            padding: 60px 40px;
+            border: 1px solid #2a4a3d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            color: var(--color-secondary);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        /* Common Image Filter to make the logo WHITE to compare against Green */
+        .logo-container img {
+            /* clear any previous filters and just make it white for visibility */
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        /* Option 1: Classic horizontal */
+        .opt-1 img {
+            width: 60px;
+            height: auto;
+        }
+
+        .opt-1 .text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--color-bg);
+            /* Cream Text */
+            line-height: 1;
+        }
+
+        /* Option 2: Stacked Centered */
+        .opt-2 {
+            flex-direction: column;
+            text-align: center;
+            gap: 16px;
+        }
+
+        .opt-2 img {
+            width: 80px;
+        }
+
+        .opt-2 .text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-bg);
+        }
+
+        .opt-2 .sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: var(--color-secondary);
+            /* Gold Subtitle */
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Option 3: Modern Minimal */
+        .opt-3 img {
+            width: 50px;
+        }
+
+        .opt-3 .text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-left: 1px solid var(--color-secondary);
+            padding-left: 24px;
+            color: var(--color-bg);
+        }
+
+        /* Option 4: Elegant Gold Accent */
+        .opt-4 img {
+            width: 70px;
+            filter: brightness(0) saturate(100%) invert(76%) sepia(26%) saturate(674%) hue-rotate(358deg) brightness(91%) contrast(85%);
+        }
+
+        .opt-4 .text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-style: italic;
+            color: var(--color-bg);
+        }
+
+        .opt-4 .highlight {
+            color: var(--color-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Logo Typography & Layout Tests (Dark Mode)</h1>
+    <div class="grid">
+
+        <!-- Option 1 -->
+        <div class="card">
+            <span class="label">Option 1: Classic Serif Horizontal</span>
+            <div class="logo-container opt-1">
+                <img src="/images/logo_icon_on_green.png" alt="Logo">
+                <div class="text">The Young Vaidyas</div>
+            </div>
+        </div>
+
+        <!-- Option 2 -->
+        <div class="card">
+            <span class="label">Option 2: Royal Stacked</span>
+            <div class="logo-container opt-2">
+                <img src="/images/logo_icon_on_green.png" alt="Logo">
+                <div class="text">The Young Vaidyas</div>
+                <div class="sub">Ayurvedic Wellness</div>
+            </div>
+        </div>
+
+        <!-- Option 3 -->
+        <div class="card">
+            <span class="label">Option 3: Modern Divider</span>
+            <div class="logo-container opt-3">
+                <img src="/images/logo_icon_on_green.png" alt="Logo">
+                <div class="text">The Young<br>Vaidyas</div>
+            </div>
+        </div>
+
+        <!-- Option 4 -->
+        <div class="card">
+            <span class="label">Option 4: Editorial Italic</span>
+            <div class="logo-container opt-4">
+                <img src="/images/logo_icon_on_green.png" alt="Logo">
+                <div class="text">The <span class="highlight">Young</span> Vaidyas</div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

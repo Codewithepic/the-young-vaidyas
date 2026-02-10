@@ -1,0 +1,88 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Shat Dhauta Ghrit",
+      "description": "Traditional Ayurvedic skin elixir",
+      "ingredients": [
+        "Gir Cow Ghee",
+        "Rose Water"
+      ],
+      "variants": [
+        {
+          "size": "10gms",
+          "price": 100
+        },
+        {
+          "size": "30gms",
+          "price": 250
+        }
+      ],
+      "image": "product1.jpg",
+      "category": "Skin Care"
+    },
+    {
+      "id": 2,
+      "name": "Keshya Mangal Hair Oil",
+      "description": "Nourishment from root to tip",
+      "ingredients": [
+        "Amla",
+        "Bhringraj",
+        "Jatamansi",
+        "Mulethi",
+        "Neem",
+        "Aloe Vera",
+        "Cold Pressed Coconut Oil"
+      ],
+      "process": "Processed acc to sharangdhar samhita attaining tail siddhi lakshan",
+      "variants": [
+        {
+          "size": "50ml",
+          "price": 100
+        },
+        {
+          "size": "200ml",
+          "price": 400
+        },
+        {
+          "size": "450ml",
+          "price": 900
+        }
+      ],
+      "image": "/images/keshya_mangal_oil_v2.jpeg",
+      "category": "Hair Care"
+    },
+    {
+      "id": 3,
+      "name": "Manjistha Lip Balm",
+      "description": "Natural healing & pigmentation care",
+      "ingredients": [
+        "Gir Cow Ghee",
+        "Coconut Oil",
+        "Sesame Oil",
+        "Bees Wax",
+        "Manjistha"
+      ],
+      "price": 50,
+      "image": "product3.jpg",
+      "category": "Lip Care"
+    },
+    {
+      "id": 4,
+      "name": "Ubtan Bathing Bar",
+      "description": "Where ubtan meets radiance",
+      "features": [
+        "Traditional herbal ubtan blend",
+        "Gentle daily cleansing"
+      ],
+      "variants": [
+        {
+          "size": "100gms",
+          "price": 90
+        }
+      ],
+      "image": "product4.jpg",
+      "category": "Bath & Body"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "founders": [
+    {
+      "name": "Harshit Jain",
+      "role": "Founder",
+      "education": "BAMS Final Professional Student (2021 Batch)",
+      "bio": "Harshit Jain represents a new generation of Ayurvedic thinkers rooted deeply in classical knowledge and disciplined practice.",
+      "philosophy": "Where tradition is treated as a legacy, not a trend.",
+      "image": "harshit.jpg"
+    },
+    {
+      "name": "Muskan Agrawal",
+      "role": "Co-Founder",
+      "education": "BAMS Second Professional Student (2023 Batch)",
+      "bio": "Muskan Agrawal brings elegance, balance, and thoughtful clarity to Ayurveda, translating ancient wisdom into refined modern wellness.",
+      "philosophy": "An aesthetic of wellness, guided by wisdom.",
+      "image": "muskan.jpg"
+    }
+  ]
+}
