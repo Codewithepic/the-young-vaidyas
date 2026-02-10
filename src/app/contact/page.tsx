@@ -52,7 +52,7 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <h4 className="font-semibold text-primary-900">Email</h4>
-                                            <p className="text-stone-600">hello@theyoungvaidyas.com</p>
+                                            <p className="text-stone-600">theyoungvaidyas@gmail.com</p>
                                             <p className="text-stone-500 text-sm">We reply within 24 hours</p>
                                         </div>
                                     </div>
@@ -65,7 +65,7 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <h4 className="font-semibold text-primary-900">Phone</h4>
-                                            <p className="text-stone-600">+91 98765 43210</p>
+                                            <p className="text-stone-600">+91 95894 38530</p>
                                             <p className="text-stone-500 text-sm">Mon - Fri, 10am to 6pm IST</p>
                                         </div>
                                     </div>

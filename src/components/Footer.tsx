@@ -52,17 +52,13 @@ export default function Footer() {
             <p className="text-white/50 text-sm leading-relaxed mb-6">
               Pure Ayurvedic formulations crafted by student scholars of traditional medicine.
             </p>
-            <div className="flex gap-4 mb-6">
+            <div className="flex gap-4">
               <a href="https://www.instagram.com/the_young_vaidyas" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[#c9a227] transition-colors">
                 <Instagram size={18} />
               </a>
               <a href="mailto:theyoungvaidyas@gmail.com" className="text-white/40 hover:text-[#c9a227] transition-colors">
                 <Mail size={18} />
               </a>
-            </div>
-            <div className="text-white/50 text-sm space-y-2">
-              <p>📧 theyoungvaidyas@gmail.com</p>
-              <p>📞 +91 95894 38530</p>
             </div>
           </div>
 
