@@ -1,8 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import reviewsData from '@/data/reviews.json'
+import { useState, useEffect } from 'react'
 
 interface Review {
     id: number
@@ -24,8 +23,28 @@ export default function Testimonials() {
         review: ''
     })
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [reviews, setReviews] = useState<Review[]>([])
+    const [isLoading, setIsLoading] = useState(true)
 
-    const reviews: Review[] = reviewsData
+    // Fetch reviews on component mount
+    useEffect(() => {
+        fetchReviews()
+    }, [])
+
+    const fetchReviews = async () => {
+        try {
+            const response = await fetch('/api/reviews')
+            if (response.ok) {
+                const data = await response.json()
+                setReviews(data)
+            }
+        } catch (error) {
+            console.error('Error fetching reviews:', error)
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
     const nextTestimonial = () => {
         setCurrentIndex((prev) => (prev + 1) % reviews.length)
@@ -35,14 +54,63 @@ export default function Testimonials() {
         setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length)
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        setIsSubmitted(true)
-        setTimeout(() => {
-            setShowForm(false)
-            setIsSubmitted(false)
-            setFormData({ name: '', location: '', rating: 5, review: '' })
-        }, 3000)
+        setIsSubmitting(true)
+
+        try {
+            const response = await fetch('/api/reviews', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+
+            if (response.ok) {
+                setIsSubmitted(true)
+                // Refresh reviews list
+                await fetchReviews()
+                setTimeout(() => {
+                    setShowForm(false)
+                    setIsSubmitted(false)
+                    setFormData({ name: '', location: '', rating: 5, review: '' })
+                }, 3000)
+            } else {
+                alert('Failed to submit review. Please try again.')
+            }
+        } catch (error) {
+            console.error('Error submitting review:', error)
+            alert('Failed to submit review. Please try again.')
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
+
+    if (isLoading) {
+        return (
+            <section className="py-20 md:py-28 bg-[#faf8f5]">
+                <div className="max-w-6xl mx-auto px-6 text-center">
+                    <p className="text-gray-500">Loading reviews...</p>
+                </div>
+            </section>
+        )
+    }
+
+    if (reviews.length === 0) {
+        return (
+            <section className="py-20 md:py-28 bg-[#faf8f5]">
+                <div className="max-w-6xl mx-auto px-6 text-center">
+                    <h2 className="text-4xl font-serif text-[#1a2e1f] mb-4">Be the First to Review!</h2>
+                    <button
+                        onClick={() => setShowForm(true)}
+                        className="px-8 py-3 bg-[#1a2e1f] text-white hover:bg-[#2a3e2f] transition-colors text-sm tracking-widest uppercase"
+                    >
+                        Share Your Experience
+                    </button>
+                </div>
+            </section>
+        )
     }
 
     return (
@@ -148,7 +216,7 @@ export default function Testimonials() {
                             <div className="text-center py-8">
                                 <div className="text-5xl mb-4">✓</div>
                                 <h3 className="text-2xl font-serif text-[#1a2e1f] mb-2">Thank You!</h3>
-                                <p className="text-gray-600">Your review has been submitted and will appear after approval.</p>
+                                <p className="text-gray-600">Your review has been submitted successfully!</p>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-6">
@@ -209,9 +277,10 @@ export default function Testimonials() {
 
                                 <button
                                     type="submit"
-                                    className="w-full px-8 py-3 bg-[#c9a227] text-[#1a2e1f] hover:bg-[#d4af37] transition-colors text-sm tracking-widest uppercase font-medium"
+                                    disabled={isSubmitting}
+                                    className="w-full px-8 py-3 bg-[#c9a227] text-[#1a2e1f] hover:bg-[#d4af37] transition-colors text-sm tracking-widest uppercase font-medium disabled:opacity-50"
                                 >
-                                    Submit Review
+                                    {isSubmitting ? 'Submitting...' : 'Submit Review'}
                                 </button>
                             </form>
                         )}
