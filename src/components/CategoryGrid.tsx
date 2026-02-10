@@ -16,7 +16,7 @@ const categories = [
         id: 2,
         title: 'Skin Care',
         image: '/images/category_skin.jpg',
-        link: '/collections/skin-care',
+        link: '/collections/skincare',
         description: 'Pure botanical formulations'
     },
     {
