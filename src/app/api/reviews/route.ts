@@ -1,40 +1,20 @@
 import { NextResponse } from 'next/server'
-import { sql } from '@vercel/postgres'
+import { supabase } from '@/lib/supabase'
 
 // GET /api/reviews - Fetch all reviews
 export async function GET() {
     try {
-        // Try to fetch from database
-        const { rows } = await sql`
-            SELECT * FROM reviews 
-            WHERE verified = true 
-            ORDER BY date DESC
-        `
-        return NextResponse.json(rows)
-    } catch (error: any) {
-        console.error('Database error:', error.message)
+        const { data, error } = await supabase
+            .from('reviews')
+            .select('*')
+            .eq('verified', true)
+            .order('date', { ascending: false })
 
-        // If table doesn't exist, try to create it
-        if (error.message?.includes('relation "reviews" does not exist')) {
-            try {
-                await sql`
-                    CREATE TABLE IF NOT EXISTS reviews (
-                        id SERIAL PRIMARY KEY,
-                        name VARCHAR(255) NOT NULL,
-                        location VARCHAR(255) NOT NULL,
-                        rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
-                        review TEXT NOT NULL,
-                        date DATE NOT NULL,
-                        verified BOOLEAN DEFAULT true,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )
-                `
-                // Return empty array after creating table
-                return NextResponse.json([])
-            } catch (createError) {
-                console.error('Error creating table:', createError)
-            }
-        }
+        if (error) throw error
+
+        return NextResponse.json(data || [])
+    } catch (error: any) {
+        console.error('Error fetching reviews:', error.message)
 
         // Fallback to JSON file
         try {
@@ -68,44 +48,20 @@ export async function POST(request: Request) {
             )
         }
 
-        // Save to database
+        // Save to Supabase
         const date = new Date().toISOString().split('T')[0]
 
-        try {
-            await sql`
-                INSERT INTO reviews (name, location, rating, review, date, verified)
-                VALUES (${name}, ${location}, ${rating}, ${review}, ${date}, true)
-            `
-            return NextResponse.json({ success: true }, { status: 201 })
-        } catch (dbError: any) {
-            console.error('Database insert error:', dbError.message)
+        const { error } = await supabase
+            .from('reviews')
+            .insert([
+                { name, location, rating, review, date, verified: true }
+            ])
 
-            // If table doesn't exist, create it first
-            if (dbError.message?.includes('relation "reviews" does not exist')) {
-                await sql`
-                    CREATE TABLE IF NOT EXISTS reviews (
-                        id SERIAL PRIMARY KEY,
-                        name VARCHAR(255) NOT NULL,
-                        location VARCHAR(255) NOT NULL,
-                        rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
-                        review TEXT NOT NULL,
-                        date DATE NOT NULL,
-                        verified BOOLEAN DEFAULT true,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )
-                `
-                // Try insert again
-                await sql`
-                    INSERT INTO reviews (name, location, rating, review, date, verified)
-                    VALUES (${name}, ${location}, ${rating}, ${review}, ${date}, true)
-                `
-                return NextResponse.json({ success: true }, { status: 201 })
-            }
+        if (error) throw error
 
-            throw dbError
-        }
-    } catch (error) {
-        console.error('Error saving review:', error)
+        return NextResponse.json({ success: true }, { status: 201 })
+    } catch (error: any) {
+        console.error('Error saving review:', error.message)
         return NextResponse.json(
             { error: 'Failed to save review. Please try again.' },
             { status: 500 }
