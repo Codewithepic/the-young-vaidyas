@@ -23,7 +23,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl md:text-3xl font-serif mb-3 md:mb-4">
+              <h3 className="text-xl md:text-3xl font-serif mb-3 md:mb-4 text-white">
                 Join Our <span className="italic text-[#c9a227]">Wellness</span> Journey
               </h3>
               <p className="text-white/60 text-xs md:text-sm mb-6 md:mb-8 px-4">
