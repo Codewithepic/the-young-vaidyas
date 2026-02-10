@@ -80,7 +80,7 @@ export default function Footer() {
           <div>
             <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#c9a227] mb-6">Company</h4>
             <ul className="space-y-3">
-              {['Our Story', 'Philosophy', 'Journal', 'Contact'].map((item) => (
+              {['Our Story', 'Philosophy', 'Reviews', 'Journal', 'Contact'].map((item) => ((
                 <li key={item}>
                   <Link href={`/${item.toLowerCase().replace(' ', '-')}`} className="text-white/50 hover:text-white text-sm transition-colors">
                     {item}
