@@ -118,9 +118,9 @@ export default function FeaturedProducts() {
                       opacity: hoveredProduct === product.id ? 1 : 0,
                       y: hoveredProduct === product.id ? 0 : 20
                     }}
-                    className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)]"
+                    className="absolute bottom-6 left-0 right-0 px-6 flex justify-center"
                   >
-                    <button className="w-full px-6 py-3 bg-white text-[#1a2e1f] text-xs tracking-[0.2em] uppercase font-semibold rounded-full shadow-xl hover:bg-[#c9a227] hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                    <button className="w-full max-w-[280px] px-6 py-3 bg-white text-[#1a2e1f] text-xs tracking-[0.2em] uppercase font-semibold rounded-full shadow-xl hover:bg-[#c9a227] hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
                       <ShoppingBag size={16} />
                       Quick Shop
                     </button>
