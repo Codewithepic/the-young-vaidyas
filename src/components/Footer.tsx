@@ -3,13 +3,63 @@
 import Link from 'next/link'
 import { Instagram, Mail, ChevronDown } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Footer() {
   const [openSection, setOpenSection] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section)
+  }
+
+  // Prevent hydration mismatch by rendering a simpler version on server
+  if (!mounted) {
+    return (
+      <footer className="bg-[#1a2e1f] text-white">
+        <div className="border-b border-white/10">
+          <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
+            <div className="max-w-xl mx-auto text-center">
+              <div className="mb-8">
+                <div className="inline-block mb-4">
+                  <span className="text-[#c9a227] text-xs uppercase tracking-[0.3em] font-medium">Newsletter</span>
+                </div>
+                <h3 className="text-2xl md:text-4xl font-serif text-white mb-4 leading-tight">
+                  Stay Connected to <br className="hidden md:block" />
+                  <span className="italic text-[#c9a227]">Ancient Wisdom</span>
+                </h3>
+                <p className="text-white/50 text-sm md:text-base leading-relaxed">
+                  Exclusive insights, wellness tips, and early access to new formulations
+                </p>
+              </div>
+              <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-full text-white placeholder:text-white/30 focus:border-[#c9a227] focus:bg-white/15 focus:outline-none transition-all text-sm backdrop-blur-sm"
+                />
+                <button className="px-8 py-4 bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-[#1a2e1f] text-xs tracking-[0.2em] uppercase font-semibold hover:shadow-lg hover:shadow-[#c9a227]/30 transition-all duration-300 rounded-full">
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className="border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/40">
+            <p className="text-center md:text-left">© 2026 The Young Vaidyas. All rights reserved.</p>
+            <p className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-green-400 rounded-full" />
+              Shipping across India
+            </p>
+          </div>
+        </div>
+      </footer>
+    )
   }
 
   return (
@@ -94,7 +144,12 @@ export default function Footer() {
           <div>
             <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#c9a227] mb-6">Company</h4>
             <ul className="space-y-3">
-              {['Our Story', 'Philosophy', 'Reviews', 'Journal', 'Contact'].map((item) => (
+              <li>
+                <Link href="/about" className="text-white/50 hover:text-white text-sm transition-colors">
+                  Our Story
+                </Link>
+              </li>
+              {['Philosophy', 'Reviews', 'Journal', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link href={`/${item.toLowerCase().replace(' ', '-')}`} className="text-white/50 hover:text-white text-sm transition-colors">
                     {item}
@@ -193,7 +248,12 @@ export default function Footer() {
               className="overflow-hidden"
             >
               <ul className="space-y-3 pb-4">
-                {['Our Story', 'Philosophy', 'Reviews', 'Journal', 'Contact'].map((item) => (
+                <li>
+                  <Link href="/about" className="text-white/60 hover:text-white text-sm transition-colors block py-1">
+                    Our Story
+                  </Link>
+                </li>
+                {['Philosophy', 'Reviews', 'Journal', 'Contact'].map((item) => (
                   <li key={item}>
                     <Link href={`/${item.toLowerCase().replace(' ', '-')}`} className="text-white/60 hover:text-white text-sm transition-colors block py-1">
                       {item}

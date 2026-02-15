@@ -26,11 +26,19 @@ export default function Testimonials() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [reviews, setReviews] = useState<Review[]>([])
     const [isLoading, setIsLoading] = useState(true)
+    const [mounted, setMounted] = useState(false)
+
+    // Mark component as mounted on client-side
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     // Fetch reviews on component mount
     useEffect(() => {
-        fetchReviews()
-    }, [])
+        if (mounted) {
+            fetchReviews()
+        }
+    }, [mounted])
 
     const fetchReviews = async () => {
         try {
@@ -86,7 +94,8 @@ export default function Testimonials() {
         }
     }
 
-    if (isLoading) {
+    // Prevent hydration mismatch by not rendering until mounted on client
+    if (!mounted || isLoading) {
         return (
             <section className="py-20 md:py-32 bg-gradient-to-br from-[#faf8f5] via-white to-[#f5f3ef]">
                 <div className="max-w-7xl mx-auto px-6 text-center">
@@ -214,8 +223,8 @@ export default function Testimonials() {
                                                 key={i}
                                                 onClick={() => setCurrentIndex(i)}
                                                 className={`transition-all duration-300 rounded-full ${i === currentIndex
-                                                        ? 'w-8 h-2 bg-[#c9a227]'
-                                                        : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                                                    ? 'w-8 h-2 bg-[#c9a227]'
+                                                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                                                     }`}
                                             />
                                         ))}

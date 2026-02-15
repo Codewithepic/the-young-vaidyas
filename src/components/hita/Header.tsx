@@ -8,7 +8,12 @@ import { useCart } from '@/context/CartContext'
 export default function HitaHeader() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
+    const [mounted, setMounted] = useState(false)
     const { cartCount, toggleCart } = useCart()
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,8 +27,8 @@ export default function HitaHeader() {
         <>
             <header
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                        ? 'bg-[#1a2e1f]/90 backdrop-blur-xl py-3 shadow-lg shadow-black/10'
-                        : 'bg-[#1a2e1f]/80 backdrop-blur-md py-4'
+                    ? 'bg-[#1a2e1f]/90 backdrop-blur-xl py-3 shadow-lg shadow-black/10'
+                    : 'bg-[#1a2e1f]/80 backdrop-blur-md py-4'
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-8 relative">

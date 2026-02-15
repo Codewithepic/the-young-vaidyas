@@ -3,11 +3,12 @@
 import { useCart } from '@/context/CartContext'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function CartDrawer() {
-    const { cartItems, removeFromCart, updateQuantity, cartTotal, isCartOpen, toggleCart, clearCart } = useCart()
-    const [isCheckoutSuccess, setIsCheckoutSuccess] = useState(false)
+    const router = useRouter()
+    const { cartItems, removeFromCart, updateQuantity, cartTotal, isCartOpen, toggleCart } = useCart()
 
     // Prevent scrolling when cart is open
     useEffect(() => {
@@ -22,12 +23,8 @@ export default function CartDrawer() {
     }, [isCartOpen])
 
     const handleCheckout = () => {
-        setIsCheckoutSuccess(true)
-        setTimeout(() => {
-            setIsCheckoutSuccess(false)
-            clearCart()
-            toggleCart()
-        }, 3000)
+        toggleCart() // Close the cart
+        router.push('/checkout') // Navigate to checkout page
     }
 
     if (!isCartOpen) return null
@@ -55,15 +52,7 @@ export default function CartDrawer() {
 
                 {/* Content */}
                 <div className="flex-1 overflow-y-auto p-6 space-y-6">
-                    {isCheckoutSuccess ? (
-                        <div className="flex flex-col items-center justify-center h-full text-center space-y-4 animate-fadeIn">
-                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-3xl">
-                                ✓
-                            </div>
-                            <h3 className="text-2xl font-serif text-green-800">Order Confirmed!</h3>
-                            <p className="text-gray-600">Thank you for shopping with The Young Vaidyas.</p>
-                        </div>
-                    ) : cartItems.length === 0 ? (
+                    {cartItems.length === 0 ? (
                         <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
                             <span className="text-4xl opacity-50">🛒</span>
                             <p className="text-gray-500 font-sans">Your cart is empty.</p>
@@ -120,20 +109,20 @@ export default function CartDrawer() {
                 </div>
 
                 {/* Footer */}
-                {cartItems.length > 0 && !isCheckoutSuccess && (
+                {cartItems.length > 0 && (
                     <div className="p-6 border-t border-gray-100 bg-gray-50">
                         <div className="flex justify-between items-center mb-4">
                             <span className="text-gray-600">Subtotal</span>
                             <span className="text-2xl font-serif text-hita-green">₹{cartTotal.toLocaleString('en-IN')}</span>
                         </div>
                         <p className="text-xs text-center text-gray-500 mb-4">
-                            Shipping and taxes calculated at checkout.
+                            Shipping calculated at checkout.
                         </p>
                         <button
                             onClick={handleCheckout}
                             className="w-full bg-gradient-to-r from-hita-green to-[#2C5F2D] text-white py-4 rounded-xl font-medium tracking-wide shadow-lg hover:shadow-xl transition-all transform active:scale-[0.98]"
                         >
-                            CHECKOUT
+                            PLACE ORDER REQUEST
                         </button>
                     </div>
                 )}

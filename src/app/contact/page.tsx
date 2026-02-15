@@ -80,9 +80,9 @@ export default function ContactPage() {
                                         <div>
                                             <h4 className="font-semibold text-primary-900">Address</h4>
                                             <p className="text-stone-600">
-                                                The Young Vaidyas Wellness Center<br />
-                                                123 Ayurveda Marg, Green Park<br />
-                                                New Delhi, India - 110016
+                                                The Young Vaidyas<br />
+                                                SarvDham Colony , Kolar <br />
+                                                Bhopal, India - 462023
                                             </p>
                                         </div>
                                     </div>

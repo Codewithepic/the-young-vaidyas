@@ -18,6 +18,7 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: {
     default: 'The Young Vaidyas - Ayurvedic Wellness',
     template: '%s | The Young Vaidyas'
