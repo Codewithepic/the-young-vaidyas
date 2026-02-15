@@ -15,10 +15,10 @@
         },
         {
           "size": "30gms",
-          "price": 250
+          "price": 300
         }
       ],
-      "image": "product1.jpg",
+      "image": "/images/products/1770791300096.png",
       "category": "Skin Care"
     },
     {
@@ -42,7 +42,7 @@
         },
         {
           "size": "200ml",
-          "price": 400
+          "price": 449
         },
         {
           "size": "450ml",
@@ -63,8 +63,13 @@
         "Bees Wax",
         "Manjistha"
       ],
-      "price": 50,
-      "image": "product3.jpg",
+      "variants": [
+        {
+          "size": "8gm",
+          "price": 79
+        }
+      ],
+      "image": "/images/products/1770791905176.png",
       "category": "Lip Care"
     },
     {
@@ -78,10 +83,48 @@
       "variants": [
         {
           "size": "100gms",
-          "price": 90
+          "price": 99
         }
       ],
-      "image": "product4.jpg",
+      "image": "/images/products/1770792132799.png",
+      "category": "Bath & Body"
+    },
+    {
+      "id": 5,
+      "name": "Rose Lip Balm",
+      "description": "Luxurious rose-infused lip care",
+      "ingredients": [
+        "Gir Cow Ghee",
+        "Coconut Oil",
+        "Sesame Oil",
+        "Bees Wax",
+        "Rose Extract"
+      ],
+      "variants": [
+        {
+          "size": "8gm",
+          "price": 119
+        }
+      ],
+      "image": "/images/products/1770795359872.png",
+      "category": "Lip Care"
+    },
+    {
+      "id": 6,
+      "name": "Ubtan Powder",
+      "description": "Traditional herbal face pack for natural glow",
+      "features": [
+        "Handmade with traditional herbs",
+        "Natural skin brightening",
+        "Suitable for all skin types"
+      ],
+      "variants": [
+        {
+          "size": "50gm",
+          "price": 79
+        }
+      ],
+      "image": "/images/products/1770791448264.png",
       "category": "Bath & Body"
     }
   ]

@@ -381,18 +381,18 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
                             {[
                                 {
-                                    name: "Vd. Harshit Jain",
+                                    name: "Harshit Jain",
                                     role: "Founder",
                                     batch: "BAMS Final Prof (Batch 2021)",
                                     quote: "A new generation thinker rooted in classical knowledge. We must practice Ayurveda with the same rigor as centuries ago.",
-                                    image: "/images/founder_harshit.jpg"
+                                    image: "/images/Harshit.jpeg"
                                 },
                                 {
-                                    name: "Vd. Muskan Agrawal",
+                                    name: "Muskan Agrawal",
                                     role: "Co-Founder",
                                     batch: "BAMS Second Prof (Batch 2023)",
                                     quote: "Bringing elegance and balance to ancient wisdom. True healing restores harmony to body and mind.",
-                                    image: "/images/founder_muskan.jpg"
+                                    image: "/images/Muskan.jpeg"
                                 }
                             ].map((founder, i) => (
                                 <motion.div

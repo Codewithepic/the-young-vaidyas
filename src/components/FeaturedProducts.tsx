@@ -5,45 +5,29 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { ShoppingBag, Star } from 'lucide-react'
+import { PRODUCTS } from '@/data/products'
 
-const products = [
-  {
-    id: 1,
-    name: 'Shat Dhauta Ghrit',
-    description: 'Skin elixir washed 100 times',
-    price: 'Rs. 1,500',
-    image: '/images/product_oil.jpg',
-    category: 'Skincare',
-    slug: 'shat-dhauta-ghrit',
-    rating: 5,
-    reviews: 127
-  },
-  {
-    id: 2,
-    name: 'Keshya Mangal Hair Oil',
-    description: 'Root-nourishing stress-relief oil',
-    price: 'Rs. 850',
-    image: '/images/keshya_mangal_oil_v2.jpeg',
-    category: 'Hair Care',
-    slug: 'keshya-mangal-hair-oil',
-    rating: 5,
-    reviews: 89
-  },
-  {
-    id: 3,
-    name: 'Kamal Nayan Kajal',
-    description: 'Ayurvedic eye wellness kajal',
-    price: 'Rs. 450',
-    image: '/images/product_kajal.jpg',
-    category: 'Eye Care',
-    slug: 'kamal-nayan-kajal',
-    rating: 5,
-    reviews: 156
-  }
-]
+// Featured bestseller products
+const featuredProducts = [
+  PRODUCTS.find(p => p.slug === 'shat-dhauta-ghrit'),
+  PRODUCTS.find(p => p.slug === 'keshya-mangal-hair-oil'),
+  PRODUCTS.find(p => p.slug === 'manjistha-lip-balm')
+].filter(Boolean) // Remove any undefined products
+
+const products = featuredProducts.map(product => ({
+  id: product!.id,
+  name: product!.name,
+  description: product!.shortDescription,
+  price: `Rs. ${product!.price}`,
+  image: product!.images[0],
+  category: product!.category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+  slug: product!.slug,
+  rating: 5,
+  reviews: Math.floor(Math.random() * 100) + 50 // Random reviews between 50-150
+}))
 
 export default function FeaturedProducts() {
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null)
+  const [hoveredProduct, setHoveredProduct] = useState<string | null>(null)
 
   return (
     <section className="py-20 md:py-32 bg-gradient-to-br from-[#faf8f5] via-white to-[#f5f3ef] relative overflow-hidden">
