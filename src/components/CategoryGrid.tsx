@@ -27,7 +27,7 @@ const categories = [
 
 export default function CategoryGrid() {
     return (
-        <section className="relative py-20 md:py-32 bg-gradient-to-b from-white via-[#faf8f5] to-white overflow-hidden">
+        <section className="relative py-16 md:py-24 bg-gradient-to-b from-white via-[#faf8f5] to-white overflow-hidden">
             {/* Decorative Background Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Floating Particles */}
@@ -137,8 +137,8 @@ export default function CategoryGrid() {
                     </Link>
                 </motion.div>
 
-                {/* Category Grid - Asymmetric Layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+                {/* Category Grid - Refined Asymmetric Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
                     {categories.map((category, i) => (
                         <motion.div
                             key={category.id}
@@ -146,14 +146,11 @@ export default function CategoryGrid() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.15, duration: 0.8 }}
-                            className={`
-                                ${i === 0 ? 'lg:col-span-7' : 'lg:col-span-5'}
-                                ${i === 1 ? 'lg:mt-12' : ''}
-                            `}
+                            className={i === 1 ? 'md:mt-12' : ''}
                         >
                             <Link href={category.link} className="group block relative">
                                 {/* Main Card Container */}
-                                <div className="relative aspect-[4/3] lg:aspect-[3/4] overflow-hidden">
+                                <div className="relative aspect-[4/3] md:aspect-[4/5] lg:aspect-square overflow-hidden rounded-md">
                                     {/* Image with Parallax Effect */}
                                     <motion.div
                                         whileHover={{ scale: 1.05 }}

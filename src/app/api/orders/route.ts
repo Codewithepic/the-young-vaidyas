@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabaseAdmin'
+import { isAdminAuthenticatedFromRequest } from '@/lib/auth'
 
 export async function POST(request: Request) {
     try {
         const orderData = await request.json()
-
-        // Generate order reference
         const orderRef = `ORD-${Date.now()}`
 
-        // Add order reference and timestamp to order data
         const completeOrder = {
             ...orderData,
             orderRef,
@@ -15,11 +14,26 @@ export async function POST(request: Request) {
             status: 'pending'
         }
 
-        // For now, we'll just return success
-        // TODO: In production, save to database or send email
-        console.log('New Order Request:', completeOrder)
+        // Save to Supabase
+        const { error } = await supabaseAdmin.from('orders').insert({
+            order_ref: orderRef,
+            status: 'pending',
+            customer_name: orderData.customerInfo.name,
+            customer_email: orderData.customerInfo.email,
+            customer_phone: orderData.customerInfo.phone,
+            shipping_address: orderData.shippingAddress,
+            items: orderData.items,
+            subtotal: orderData.subtotal,
+            shipping: orderData.shipping,
+            total: orderData.total,
+            notes: orderData.notes || null,
+        })
 
-        // Create email body for mailto link
+        if (error) {
+            console.error('Supabase insert error:', error)
+            // Don't fail the order — still return success so customer flow works
+        }
+
         const emailBody = `
 New Order Request from The Young Vaidyas Website
 
@@ -61,4 +75,21 @@ Please contact customer to confirm order and share payment details.
             { status: 500 }
         )
     }
+}
+
+export async function GET(request: Request) {
+    if (!isAdminAuthenticatedFromRequest(request)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { data, error } = await supabaseAdmin
+        .from('orders')
+        .select('*')
+        .order('created_at', { ascending: false })
+
+    if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    return NextResponse.json({ orders: data })
 }
